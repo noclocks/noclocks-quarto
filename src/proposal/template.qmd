@@ -1,0 +1,327 @@
+---
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    theme:
+      version: 5
+---
+
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(knitr)
+  library(quarto)
+  library(kableExtra)
+  library(htmltools)
+  library(tibble)
+  library(dplyr)
+  library(purrr)
+  library(lubridate)
+  library(shiny)
+  library(bslib)
+  library(sass)
+  library(bsicons)
+})
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+
+params <- list(
+  project = list(
+    title = "GMH Data Hub Platform Marketing Survey Integration",
+    description = "Develop a data hub platform for integrating marketing survey data.",
+    target_start_date = "October 15, 2024",
+    target_end_date = format(as.Date("2024-10-15") + lubridate::dhours(24 * 60 * 60 * 60), "%B %d, %Y"),
+    target_duration = "2 Months",
+    estimated_cost = 50000,
+    estimated_hours = 1200,
+    total_number_of_features = 25,
+    features = list(
+      list(
+        title = "User Authentication System",
+        description = "Implement a secure user authentication system.",
+        details = c(
+          "Multi-factor authentication",
+          "Password recovery options",
+          "User role management"
+        ),
+        time = 100,
+        cost = 8000
+      ),
+      list(
+        title = "Data Analytics Dashboard",
+        description = "Develop an interactive dashboard for data visualization.",
+        details = c(
+          "Real-time data updates",
+          "Customizable widgets",
+          "Export functionality"
+        ),
+        time = 200,
+        cost = 16000
+      )
+    )
+  ),
+  client = list(
+    name = "GMH Communities",
+    url = "https://www.gmhcommunities.com",
+    logo = "https://cdn.brandfetch.io/gmhcommunities.com/logo",
+    contacts = list(
+      list(
+        name = "John Doe",
+        role = "Marketing Director",
+        email = "john.doe@gmhcommunites.com",
+        organization = "GMH Communities"
+      )
+    )
+  ),
+  provider = list(
+    name = "No Clocks, LLC",
+    url = "https://www.noclocks.dev",
+    logo = "https://cdn.brandfetch.io/noclocks.dev/logo",
+    contacts = list(
+      list(
+        name = "Jimmy Briggs",
+        role = "Lead Developer",
+        email = "jimmy.briggs@noclocks.dev",
+        organization = "No Clocks, LLC"
+      ),
+      list(
+        name = "Patrick Howard",
+        role = "Lead Developer",
+        email = "patrick.howard@noclocks.dev",
+        organization = "No Clocks, LLC"
+      )
+    )
+  )
+)
+```
+
+# Business Proposal for `r params$project_name` <img src="`r params$client$logo`" width="200px" align="right"/>
+
+- **Prepared For:** `r params$client$name`
+- **Prepared By:** `r params$provider$name`
+- **Date:** `r format(Sys.Date(), '%B %d, %Y')`
+
+## Quick Statistics
+
+```{r stats, echo=FALSE}
+#| warn: false
+#| message: false
+
+bslib::card(
+  title = "Project Overview",
+  full_screen = TRUE,
+  bslib::layout_column_wrap(
+    bslib::value_box(
+      title = "Estimated Duration",
+      value = params$project$target_duration,
+      showcase = bsicons::bs_icon("calendar"),
+      htmltools::tags$p("Target Duration")
+    ),
+
+    bslib::value_box(
+      title = "Estimated Cost",
+      value = scales::dollar(params$project$estimated_cost),
+      showcase = bsicons::bs_icon("cash"),
+      htmltools::tags$p("Total Estimated Cost")
+    ),
+
+    bslib::value_box(
+      title = "Estimated Hours",
+      value = scales::comma(params$project$estimated_hours),
+      showcase = bsicons::bs_icon("clock"),
+      htmltools::tags$p("Total Estimated Hours")
+    )
+  )
+)
+```
+
+## Executive Summary
+
+Currently, the process of gathering, analyzing, and managing market survey data within GMH is fragmented, leading to inefficiencies and potential misinformation. General Managers and their teams require an organized, efficient method to visualize and manage this data to support informed decision-making.
+
+Develop and integrate a Market Survey Module that features a robust backend data model and intuitive frontend interface within the GMH Data Hub Leasing Dashboard. This will enable streamlined input, analysis, and management of market surveys, ensuring seamless usability for the end users.
+
+::: {.callout-note}
+Please note that the development time and cost are rough estimates and can vary based on the complexity of the features, the experience level of the developers, and other project-specific factors. Additional costs such as maintenance, hosting, and third-party services are not included in this estimate.
+:::
+
+{{< pagebreak >}}
+
+## Features
+
+We have provided an initial list of project features below.
+
+::: {.callout-note}
+These features are subject to change based on the project requirements and client feedback.
+:::
+
+::: {.panel-tabset group="features"}
+
+```{r features, echo=FALSE, results='asis'}
+#| warn: false
+#| message: false
+
+features <- params$project$features
+
+md_content <- purrr::walk(features, function(feature) {
+  cat(paste0("### ", feature$title, "\n\n"))
+  cat(paste0("**Description:** ", feature$description, "\n\n"))
+  cat("#### Details:\n\n")
+  purrr::walk(feature$details, function(detail) {
+    cat(paste0("- ", detail, "\n\n"))
+  })
+  cat(paste0("**Estimated Time:** ", feature$time, " hours\n\n"))
+  cat(paste0("**Estimated Cost:** ", scales::dollar(feature$cost), "\n\n"))
+  cat("\n\n")
+})
+
+knitr::render_markdown(md_content)
+```
+
+:::
+
+{{< pagebreak >}}
+
+## Dependencies
+
+The successful implementation of this project will require the following dependencies:
+
+::: {.column width="50%"}
+
+### Resource Dependencies
+
+- **Development Team:** The project will require a dedicated development team with expertise in backend and frontend development.
+
+- **Data Analysts:** Data analysts will be required to ensure the accuracy and relevance of the data collected and analyzed.
+
+:::
+
+::: {.column width="50%"}
+
+### Technology Dependencies
+
+- **Database Management System:** A robust database management system will be required to store and manage the survey data efficiently.
+
+- **Access to GMH Data Hub:** Integration with the GMH Data Hub platform will be necessary to ensure seamless data flow and user experience.
+
+:::
+
+## Proposed Architecture Diagram
+
+The proposed architecture for the Market Survey Module is outlined below:
+
+::: {.panel-tabset group="diagrams"}
+
+### Sitemap
+
+```{r}
+library(DiagrammeR)
+grViz("
+  digraph sitemap {
+    # Node Styles
+    node [fontname = Helvetica, shape = box, style = filled, color = lavender, fillcolor = lavender, fontsize = 12]
+    # Define Layout
+    rankdir = TB
+    splines = ortho
+    edge [arrowhead = vee, color = black]
+    
+    # Define Nodes
+    Homepage -> Login
+    Login -> Dashboard
+    Dashboard -> { 'Navigate to Market Survey Module' 'Admin Dashboard' }
+    
+    'Navigate to Market Survey Module' -> {
+      'Access Market Survey Module' 'Collaborate with Team Members' 
+      'Enter Survey Data' 'View Survey Visualizations' 
+      'Receive Notifications' 
+    }
+    
+    'Admin Dashboard' -> { 
+      'Manage User Permissions' 'Oversee Data Accuracy' 
+      'Create Survey Templates' 'Generate Usage Reports' 
+    }
+    
+    'Access Market Survey Module' -> { 
+      'Receive Alerts' 'Generate Reports' 
+      'Integrate with Leasing Data' 'View Survey Visualizations'
+    }
+    
+    'Collaborate with Team Members' -> { 'Access Previous Surveys' 'Receive Notifications' }
+    
+    'Manage User Permissions' -> 'Generate Usage Reports'
+    
+    'Oversee Data Accuracy' -> 'Generate Usage Reports'
+    
+    'View Survey Visualizations' -> 'Integrate with Leasing Data'
+    
+    # Footer
+    
+    Dashboard -> 'Log Out'
+    'Log Out' -> Homepage
+    
+    # Node Positions
+  { rank = same; 'Dashboard' 'Log Out' }
+  }
+")
+```
+
+### System Architecture
+
+```{r}
+grViz("
+  digraph architecture {
+    # Node Styles
+    node [fontname = Helvetica, shape = box, style = filled, color = lavender, fillcolor = lavender, fontsize = 12]
+    # Define Layout
+    rankdir = TB
+    splines = ortho
+    edge [arrowhead = vee, color = black]
+    
+    # Define Nodes
+    'Frontend Interface' -> 'Backend API'
+    'Backend API' -> 'Database'
+    'Database' -> 'Data Analytics Engine'
+    'Data Analytics Engine' -> 'Frontend Interface'
+  }
+")
+```
+
+:::
+
+## Project Milestones & Planning
+
+::: {.panel-tabset group="milestones"}
+
+### Milestone 1: Project Initiation (Week 1)
+
+- **Objective:** Kick-off meeting with the GMH team to discuss project requirements and goals.
+- **Deliverables:** Project plan, timeline, and resource allocation.
+
+### Milestone 2: Backend Development (Weeks 2-4)
+
+- **Objective:** Develop the backend API for the Market Survey Module.
+- **Deliverables:** Backend API, database schema, and data analytics engine.
+
+### Milestone 3: Frontend Development (Weeks 5-7)
+
+- **Objective:** Develop the frontend interface for the Market Survey Module.
+- **Deliverables:** User interface, data visualization components, and integration with the GMH Data Hub.
+
+### Milestone 4: Testing & Deployment (Week 8)
+
+- **Objective:** Test the Market Survey Module for functionality, performance, and security.
+- **Deliverables:** Testing reports, deployment plan, and user training.
+
+:::
+
+## Contact Information
+
+For any questions or further information, please contact:
+
+
+
+

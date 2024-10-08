@@ -1,0 +1,49 @@
+params:
+  project:
+    title: "GMH Data Hub Platform Marketing Survey Integration"
+    description: "Develop a data hub platform for integrating marketing survey data."
+    target_start_date: "October 15, 2024"
+    target_end_date: "`r format(as.Date(params$project$target_start_date) + months(2), '%B %d, %Y')`"
+    target_duration: "2 Months"
+    estimated_cost: 50000
+    estimated_hours: 1200
+    total_number_of_features: 25
+    features:
+      - title: "User Authentication System"
+        description: "Implement a secure user authentication system."
+        details:
+          - "Multi-factor authentication"
+          - "Password recovery options"
+          - "User role management"
+        time: 100
+        cost: 8000
+      - title: "Data Analytics Dashboard"
+        description: "Develop an interactive dashboard for data visualization."
+        details:
+          - "Real-time data updates"
+          - "Customizable widgets"
+          - "Export functionality"
+        time: 200
+        cost: 16000
+  client:
+    name: "GMH Communities"
+    url: "https://www.gmhcommunities.com"
+    logo: "https://cdn.brandfetch.io/gmhcommunities.com/logo"
+    contacts:
+      - name: "John Doe"
+        role: "Marketing Director"
+        email: "john.doe@gmhcommunities.com"
+        organization: "GMH Communities"
+  provider:
+    name: "No Clocks, LLC"
+    url: "https://www.noclocks.dev"
+    logo: "https://cdn.brandfetch.io/noclocks.dev/logo"
+    contacts:
+      - name: "Jimmy Briggs"
+        role: "Lead Developer"
+        email: "jimmy.briggs@noclocks.dev"
+        organization: "No Clocks, LLC"
+      - name: "Patrick Howard"
+        role: "Lead Developer"
+        email: "patrick.howard@noclocks.dev"
+        organization: "No Clocks, LLC"
